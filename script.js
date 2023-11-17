@@ -139,7 +139,7 @@ function getPasswordOptions() {
     }
   } while (allOptionsInvalid);
   
-  // Final result to generate the password with valid user input
+  // inal result to generate the password with valid user input
   return {
     passLength,
     includeNumbers,
@@ -151,10 +151,9 @@ function getPasswordOptions() {
 // Function to generate password with user input
 function generatePasswordWithUserInput() {
   let options = getPasswordOptions();
-/// Potential and guaranteed characters that will be added to the password
   let possibleCharacters = [];
   let guaranteedCharacters = [];
-/// Selecting possible characters from the arrays. Then randomly selecting characters added to the guaranteed characters
+
   if (options.includeNumbers) {
     possibleCharacters = possibleCharacters.concat(numericCharacters);
     guaranteedCharacters.push(getRandom(numericCharacters));
@@ -175,16 +174,18 @@ function generatePasswordWithUserInput() {
     guaranteedCharacters.push(getRandom(specialCharacters));
   }
 
-  /// Loop to add characters until the password meets the lenght requirements
-  for (let i = 0; i < options.passLength - guaranteedCharacters.length; i++) {
-    guaranteedCharacters.push(getRandom(possibleCharacters));
+  for (let i = 0; i < (options.passLength - guaranteedCharacters.length); i++) {
+    possibleCharacters.push(getRandom(possibleCharacters));
   }
   
-  return guaranteedCharacters.join('');
+  // Combines the guaranteedCharacters with the rest of the possible characters
+  let finalPassword = possibleCharacters.slice(0, options.passLength);
+  
+  return finalPassword.join('');
 }
 
 // Testing our function
-// console.log(generatePasswordWithUserInput());
+//console.log(generatePasswordWithUserInput());
 
 // Get references to the #generate element
 var generateBtn = document.querySelector('#generate');
