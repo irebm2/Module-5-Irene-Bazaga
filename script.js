@@ -139,7 +139,7 @@ function getPasswordOptions() {
     }
   } while (allOptionsInvalid);
   
-  // inal result to generate the password with valid user input
+  // Final result to generate the password with valid user input
   return {
     passLength,
     includeNumbers,
@@ -148,6 +148,7 @@ function getPasswordOptions() {
     includeSpecial
   };
 }
+
 // Function to generate password with user input
 function generatePasswordWithUserInput() {
   let options = getPasswordOptions();
@@ -174,12 +175,14 @@ function generatePasswordWithUserInput() {
     guaranteedCharacters.push(getRandom(specialCharacters));
   }
 
+  let remainingCharacters = [];  // New array to hold the remaining characters
+  
   for (let i = 0; i < (options.passLength - guaranteedCharacters.length); i++) {
-    possibleCharacters.push(getRandom(possibleCharacters));
+    remainingCharacters.push(getRandom(possibleCharacters));  // Pushing to remainingCharacters instead of possibleCharacters
   }
   
-  // Combines the guaranteedCharacters with the rest of the possible characters
-  let finalPassword = possibleCharacters.slice(0, options.passLength);
+  // Combining the guaranteedCharacters with the rest of the possible characters
+  let finalPassword = guaranteedCharacters.concat(remainingCharacters).slice(0, options.passLength);
   
   return finalPassword.join('');
 }
