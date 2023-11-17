@@ -1,7 +1,7 @@
 # Module-5-Irene-Bazaga
 # Password Generator
 
-![Screenshot of the Password Generator](./screenshot.png)
+![image](https://github.com/irebm2/Module-5-Irene-Bazaga/assets/146390674/7d0d3e9a-59af-46c5-a828-3537f57d1d07)
 
 ## Overview
 
@@ -24,7 +24,7 @@ The password is then generated with a secure random combination of the selected 
 
 The underlying code uses JavaScript to create arrays of each character type (numericals, lower case, upper case, special characters), and follows the user's preferences to generate a password. The implementation ensures that at least one of each selected character type is included in the final password.
 
-To start using the application, please follow the [application link](insert-link-here). 
+To start using the application, please follow the [application link](https://irebm2.github.io/Module-5-Irene-Bazaga/). 
 
 ## How to Use 
 
@@ -34,8 +34,8 @@ To start using the application, please follow the [application link](insert-link
 4. Your generated password will appear on the text box.
 
 ## Screenshot
-Replace ./screenshot.png with an actual screenshot image.
 
-Note: Be sure to replace `insert-link-here` with the actual link to your deployed application. Also, be sure to replace `./screenshot.png` with the actual path to the screenshot of your application.
+![image](https://github.com/irebm2/Module-5-Irene-Bazaga/assets/146390674/8fb1f1e3-78be-4fa1-bfd4-247b3f4c0543)
+
 
 Made with love and JavaScript by Irene Bazaga. Happy coding!
