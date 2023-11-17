@@ -99,31 +99,43 @@ function getPasswordOptions() {
   function yesOrNo(question) {
     let answer;
     do {
-      answer = prompt(question + " Yes or No?");
-      if (answer.toLowerCase() !== "yes" && answer.toLowerCase() !== "no") {
+      answer = prompt(question + " yes or no?");
+      answer = answer.toLowerCase();
+      if (answer !== "yes" && answer !== "no") {
         alert("Please enter 'yes' or 'no'");
       }
-    } while (answer.toLowerCase() !== "yes" && answer.toLowerCase() !== "no");
-    return answer.toLowerCase() === "yes";
+    } while (answer !== "yes" && answer !== "no");
+    return answer === "yes";
   }
-
+  
   function getValidPasswordLength() {
     let passwordLength;
     do {
       passwordLength = prompt('Enter password length. At least 8 characters but no more than 128.');
-
-      if (passwordLength < 8 || passwordLength > 128) {
+      passwordLength = Number(passwordLength);
+      if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
         alert('Your password does not meet the criteria. It must be between 8 and 128 characters in length.');
       }
-    } while (passwordLength < 8 || passwordLength > 128);
+    } while (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128);
     return passwordLength;
   }
 
+  let allOptionsInvalid;
+  let includeNumbers, includeUpper, includeLower, includeSpecial;
   const passLength = getValidPasswordLength();
-  const includeNumbers = yesOrNo('Would you like your password to have numerical characters?');
-  const includeUpper = yesOrNo('Would you like your password to have upper case characters?');
-  const includeLower = yesOrNo('Would you like your password to have lower case characters?');
-  const includeSpecial = yesOrNo('Would you like your password to have special characters?');
+
+  do {
+    includeNumbers = yesOrNo('Would you like your password to have numerical characters?');
+    includeUpper = yesOrNo('Would you like your password to have upper case characters?');
+    includeLower = yesOrNo('Would you like your password to have lower case characters?');
+    includeSpecial = yesOrNo('Would you like your password to have special characters?');
+  
+    allOptionsInvalid = !includeNumbers && !includeUpper && !includeLower && !includeSpecial;
+  
+    if (allOptionsInvalid) {
+      alert('At least one character type should be selected (number, upper case, lower case, special characters)');
+    }
+  } while (allOptionsInvalid);
   
   return {
     passLength,
@@ -133,14 +145,13 @@ function getPasswordOptions() {
     includeSpecial
   };
 }
-
 // Function to generate password with user input
 function generatePasswordWithUserInput() {
   let options = getPasswordOptions();
-
+/// Potential and guaranteed characters that will be added to the password
   let possibleCharacters = [];
   let guaranteedCharacters = [];
-
+/// Selecting possible characters from the arrays. Then randomly selecting characters added to the guaranteed characters
   if (options.includeNumbers) {
     possibleCharacters = possibleCharacters.concat(numericCharacters);
     guaranteedCharacters.push(getRandom(numericCharacters));
@@ -161,6 +172,7 @@ function generatePasswordWithUserInput() {
     guaranteedCharacters.push(getRandom(specialCharacters));
   }
 
+  /// Loop to add characters until the password meets the lenght requirements
   for (let i = 0; i < options.passLength - guaranteedCharacters.length; i++) {
     guaranteedCharacters.push(getRandom(possibleCharacters));
   }
