@@ -91,28 +91,27 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  let PassLenght = prompt('Enter password length. At least 8 characters but no more than 128.');
   let PassNum = ('Would you like your password to have numerical characters?')
   let PassUpper = ('Would you like your password to have upper case characters?')
   let PassLower = ('Would you like your password to have lower case characters?')
   let PassSpecialChar = ('Would you like your password to have special characters?')
 
 
-  function lenght(a) {
-  let b 
-  do {
-    b = prompt(a);
-    if (PassLenght < 8 || PassLenght > 128) {
-      alert("Your password does not meet the criteria. It must be between 8 and 128 characters in length.It must be between 8 and 128 characters in length");
-    }
-  } while (PassLenght < 8 || PassLenght > 128);
-
-  if (PassLenght < 8 || PassLenght > 128) {
-    return b
+  function getValidPasswordLength() {
+    let passwordLength;
+  
+    do {
+      passwordLength = prompt('Enter password length. At least 8 characters but no more than 128.');
+  
+      if (passwordLength < 8 || passwordLength > 128) {
+        alert('Your password does not meet the criteria. It must be between 8 and 128 characters in length.');
+      }
+    } while (passwordLength < 8 || passwordLength > 128);
+  
+    return passwordLength;
   }
-}
-  PassLenghtAnswer = lenght(PassLenght)
-  console.log(PassLenghtAnswer)
+  
+  const passwordLength = getValidPasswordLength();
 
   function yesOrNo(a) {
     let b;
@@ -136,22 +135,8 @@ function getPasswordOptions() {
   let PassSpecialCharAnswer = yesOrNo(PassSpecialChar);
 
 }
-function getValidPasswordLength() {
-  let passwordLength;
 
-  do {
-    passwordLength = prompt('Enter password length. At least 8 characters but no more than 128.');
 
-    if (passwordLength < 8 || passwordLength > 128) {
-      alert('Your password does not meet the criteria. It must be between 8 and 128 characters in length.');
-    }
-  } while (passwordLength < 8 || passwordLength > 128);
-
-  return passwordLength;
-}
-
-const passwordLength = getValidPasswordLength();
-console.log(passwordLength);
 
 // Function for getting a random element from an array
 function getRandom(arr) {
