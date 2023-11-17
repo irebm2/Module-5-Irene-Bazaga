@@ -108,6 +108,7 @@ function getPasswordOptions() {
     return answer === "yes";
   }
   
+  // Function to get the length of the password 
   function getValidPasswordLength() {
     let passwordLength;
     do {
@@ -120,6 +121,7 @@ function getPasswordOptions() {
     return passwordLength;
   }
 
+  // Function to check if the user input is valid (code should validate for each input and at least one character type should be selected)
   let allOptionsInvalid;
   let includeNumbers, includeUpper, includeLower, includeSpecial;
   const passLength = getValidPasswordLength();
@@ -137,6 +139,7 @@ function getPasswordOptions() {
     }
   } while (allOptionsInvalid);
   
+  // Final result to generate the password with valid user input
   return {
     passLength,
     includeNumbers,
